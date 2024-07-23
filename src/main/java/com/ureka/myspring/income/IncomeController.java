@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class IncomeController {
     @RequestMapping("/income/list")
     @ResponseBody
     public List<Income> list() {
-        return inRepo.findAll();
+    	return inRepo.findAll(Sort.by(Sort.Direction.ASC, "indate"));
     }
     
     @PostMapping("/income/regist")
