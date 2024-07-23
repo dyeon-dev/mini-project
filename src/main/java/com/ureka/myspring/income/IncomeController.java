@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 @Controller
 public class IncomeController {
     
@@ -79,5 +80,20 @@ public class IncomeController {
 	        result.put("message", "없거나 삭제된 번호입니다");
 	    }
 		return result;
+	}
+    
+    @GetMapping("/income/delete/{id}")
+	@ResponseBody
+	public Map<String,Object> delete(@PathVariable("id") int no) {
+		Map<String, Object> result = new HashMap<>();
+		Optional<Income> bd = inRepo.findById(no);
+		if(bd.isPresent()) {
+			inRepo.deleteById(no);
+			result.put("code", "ok");
+		}else {
+			result.put("code", "error");
+			result.put("message","없거나 삭제된 번호입니다" );
+		}
+		return result ;
 	}
 }
