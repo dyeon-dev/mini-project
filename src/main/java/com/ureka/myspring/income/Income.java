@@ -1,6 +1,7 @@
 package com.ureka.myspring.income;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -16,10 +17,9 @@ public class Income {
 	@Id
 	private int no;
 	private String title;
-	private String price;
+	private int price;
 	
-	private Date indate;
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	private LocalDate indate;
 
 	public int getNo() {
 		return no;
@@ -33,26 +33,16 @@ public class Income {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
-	public Date getIndate() {
+	public LocalDate getIndate() {
 		return indate;
 	}
-	public void setIndate(Date indate) {
-		this.indate = indate;
-	}
-	public String getFormattedIndate() {
-		if (indate != null) {
-			return dateFormat.format(indate);
-		}
-		return null;
-	}
-
-	public void setFormattedIndate(String dateStr) throws ParseException {
-		this.indate = dateFormat.parse(dateStr);
+	public void setIndate(LocalDate d) {
+		this.indate = d;
 	}
 }
