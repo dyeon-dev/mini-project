@@ -1,6 +1,7 @@
 package com.ureka.myspring.expend;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -18,7 +19,7 @@ public class Expend {
 	private String title;
 	private String price;
 	private String category;
-	private Date indate;
+	private LocalDate indate;
 	public int getNo() {
 		return no;
 	}
@@ -43,10 +44,10 @@ public class Expend {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public Date getIndate() {
+	public LocalDate getIndate() {
 		return indate;
 	}
-	public void setIndate(Date indate) {
+	public void setIndate(LocalDate indate) {
 		this.indate = indate;
 	}
 	
