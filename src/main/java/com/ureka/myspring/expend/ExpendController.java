@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller
+@RestController
+
 public class ExpendController {
     
     @Autowired
@@ -99,4 +102,17 @@ public class ExpendController {
 		}
 		return result ;
 	}
+    
+    @GetMapping("/expend/total")
+    @ResponseBody
+    public Map<String, Object> getTotalExpend() {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            Integer totalExpend = exRepo.sumPrice();
+            result.put("totalExpend", totalExpend);
+        } catch (Exception e) {
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
 }
