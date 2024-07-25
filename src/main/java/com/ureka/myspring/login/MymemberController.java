@@ -37,7 +37,7 @@ public class MymemberController {
 				result.put("message", "로그인완료");
 				session.setAttribute("member", mymember);
 			}else {
-				result.put("message", "암호틀림");
+				result.put("message", "암호가 틀렸습니다.");
 			}
 		}else {
 			result.put("message", "없거나 삭제된 mid");
@@ -71,21 +71,24 @@ public class MymemberController {
 	@GetMapping("/member/check_login")
 	@ResponseBody
 	public Map<String, Object> check_login( HttpSession session ){
-		HashMap<String, Object> result = new HashMap<>();
-		
-		Object object = session.getAttribute("member");
-		if(object==null) {
-			result.put("code", "error");
-			result.put("message", "Not Login");
-		}else {
-			result.put("code", "ok");
-			result.put("message", "On Login");
-			Mymember mm = (Mymember)object;
-			mm.setMpwd(null);
-			result.put("data", mm); //로그인된 사용자 정보
-		}
-		
-		System.out.println(result);
-		return result;
+		 Map<String, Object> result = new HashMap<>();
+		 Object object = session.getAttribute("member");
+
+	        if (object!= null) {
+	            result.put("loggedIn", true);
+	            result.put("code", "ok");
+				result.put("message", "On Login");
+				Mymember mm = (Mymember)object;
+				mm.setMpwd(null);
+				result.put("data", mm); //로그인된 사용자 정보
+
+	        } else {
+	            result.put("loggedIn", false);
+	            result.put("code", "error");
+				result.put("message", "Not Login");
+	        }
+	        System.out.println(result);
+			return result;
+
 	}
 }

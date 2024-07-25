@@ -228,7 +228,11 @@
                     method: "POST",
                     data: $("#login_form").serialize(),
                     success: function (data) {
-                        location.href = "myhome.html";
+						if(data.code=='ok') {
+							location.href = "myhome.html";
+						} else {
+							alert(data.message)							
+						}
                     }
                 });
                 return false;
