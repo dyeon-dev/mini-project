@@ -190,8 +190,7 @@
 
 		<!-- 본문 -->
 		<div id="page-content-wrapper">
-				<a href="login.html"><button type="button" id="login_form" class="btn btn-primary">로그인</button></a>
-				<a href="/member_reg.html"><button type="button" id="sign_form" class="btn btn-light">회원가입</button></a>
+				<button type="button" id="logout" class="btn btn-light">로그아웃</button>
 			<div class="container-fluid">
 				<img src="./images/home_icon.png" class="home_icon">
 				<div class="title">
@@ -203,6 +202,20 @@
 		</div>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript">
+			//로그아웃하기
+			$("#logout").click(function () {
+				$.ajax({
+					url: "/member/logout",
+					success: function (data) {
+						location.href = "home.html";
+					}
+				})
+
+				return false;
+			})
+		</script>
 </body>
 
 </html>
