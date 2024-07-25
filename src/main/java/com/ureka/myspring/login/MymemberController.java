@@ -10,14 +10,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+@RestController
 public class MymemberController {
+	@Autowired
+    private MemberService memberService;
 	
 	@Autowired
 	private MymemberRepository mymemRepo;
+	
+	// 회원가입 기능 
+	@PostMapping("/member/signup")
+    @ResponseBody
+    public Map<String, Object> signup(
+            @RequestParam("mid") String mid,
+            @RequestParam("mpwd") String mpwd,
+            @RequestParam("mname") String mname,
+            @RequestParam("memail") String memail,
+            @RequestParam("mphone") String mphone) {
+
+        Mymember member = new Mymember();
+        member.setMid(mid);
+        member.setMpwd(mpwd);
+        member.setMname(mname);
+        member.setMemail(memail);
+        member.setMtel(mphone);
+
+        return memberService.signup(member);
+    }
 	
 	//로그인기능
 	@PostMapping("/member/login")
