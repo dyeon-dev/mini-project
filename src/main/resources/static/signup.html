@@ -118,8 +118,11 @@
 						<div class="row row-cols-auto">
 							<div class="col">
 								<div class="form-floating mb-3">
-									<input type="text" class="form-control" id="mid" name="mid" placeholder="아이디">
+									<input type="text" class="form-control" id="mid" name="mid" placeholder="아이디" required>
 									<label for="floatingInput">Id</label>
+									<div class="valid-feedback">
+									      Looks good!
+									    </div>
 								</div>
 							</div>
 						</div>
@@ -127,7 +130,7 @@
 							<div class="col">
 								<div class="form-floating mb-3">
 									<input type="password" class="form-control" id="mpwd" name="mpwd"
-										placeholder="비밀번호">
+										placeholder="비밀번호" required>
 									<label for="floatingPassword">Password</label>
 								</div>
 							</div>
@@ -135,8 +138,8 @@
 						<div class="row row-cols-auto">
 							<div class="col">
 								<div class="form-floating mb-3">
-									<input type="text" class="form-control" id="mname" name="mname" placeholder="닉네임">
-									<label for="floatingInput">Nickname</label>
+									<input type="text" class="form-control" id="mname" name="mname" placeholder="닉네임" required>
+									<label for="floatingInput" >Nickname</label>
 								</div>
 							</div>
 						</div>
@@ -144,8 +147,8 @@
 							<div class="col">
 								<div class="form-floating mb-3">
 									<input type="text" class="form-control" id="mphone" name="mphone"
-										placeholder="010-xxxx-xxxx">
-									<label for="floatingInput">Phone</label>
+									placeholder="010-xxxx-xxxx" pattern="\d{3}-\d{3,4}-\d{4}" required>
+									<label for="floatingInput">Phone: 010-xxxx-xxxx</label>
 								</div>
 							</div>
 						</div>
@@ -153,7 +156,7 @@
 							<div class="col">
 								<div class="form-floating">
 									<input type="email" class="form-control" id="memail" name="memail"
-										placeholder="name@example.com">
+										placeholder="name@example.com" required>
 									<label for="floatingInput">Email</label>
 								</div>
 							</div>

@@ -64,7 +64,7 @@ public class MymemberController {
 				result.put("message", "암호가 틀렸습니다.");
 			}
 		}else {
-			result.put("message", "없거나 삭제된 mid");
+			result.put("message", "아이디를 다시 입력해주세요");
 		}
 		System.out.println(result);
 		return result;

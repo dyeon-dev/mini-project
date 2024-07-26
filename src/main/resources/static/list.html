@@ -117,16 +117,16 @@
 								<form id="income_form">
 									<div class="mb-3">
 										<label for="recipient-name" class="col-form-label">메모</label>
-										<input type="text" name="title" class="form-control" id="in_title">
+										<input type="text" name="title" class="form-control" id="in_title" required>
 									</div>
 									<div class="mb-3">
 										<label for="message-text" class="col-form-label">금액</label>
-										<input class="form-control" name="price" id="in_price"></input>
+										<input class="form-control" name="price" id="in_price" required></input>
 									</div>
 									<div class="mb-3">
 										<label for="date" class="col-form-label">날짜</label>
 										<input type="text" name="result" class="form-control w-25 mx-auto mb-3"
-											placeholder="Select date" id="result" readonly>
+											placeholder="Select date" id="result" readonly required>
 										<div id="inline_cal"></div>
 									</div>
 								</form>
@@ -155,16 +155,16 @@
 									<input type="hidden" name="no" id="edit_id">
 									<div class="mb-3">
 										<label for="edit_title" class="col-form-label">메모</label>
-										<input type="text" name="title" class="form-control" id="edit_title">
+										<input type="text" name="title" class="form-control" id="edit_title" required>
 									</div>
 									<div class="mb-3">
 										<label for="edit_price" class="col-form-label">금액</label>
-										<input class="form-control" name="price" id="edit_price"></input>
+										<input class="form-control" name="price" id="edit_price" required></input>
 									</div>
 									<div class="mb-3">
 										<label for="edit_date" class="col-form-label">날짜</label>
 										<input type="text" name="date" class="form-control w-25 mx-auto mb-3"
-											id="edit_date" readonly>
+											id="edit_date" readonly required>
 										<div id="edit_cal"></div>
 									</div>
 								</form>
@@ -275,9 +275,16 @@
 				var button = event.relatedTarget;
 			});
 
+			// 폼 제출 버튼 클릭 이벤트
 			$("#submit_form").click(function () {
-				$("#result").prop('readonly', false);  // 폼 제출 전에 필드를 활성화
-				$("#income_form").submit();
+			    // HTML5 폼 검증
+			    var form = $("#income_form")[0];
+			    if (form.checkValidity() === false) {
+			        form.reportValidity(); // 브라우저 기본 경고 표시
+			    } else {
+			        $("#result").prop('readonly', false);  // 폼 제출 전에 필드를 활성화
+			        $("#income_form").submit(); // 폼 제출
+			    }
 			});
 
 			$("#income_form").submit(function (event) {
@@ -297,10 +304,17 @@
 					}
 				});
 			});
-
+			
+			// 수정폼 제출 버튼 클릭 이벤트
 			$("#update_form").click(function () {
-				$("#edit_date").prop('readonly', false);  // 폼 제출 전에 필드를 활성화
-				$("#edit_form").submit();
+			    // HTML5 폼 검증
+			    var form = $("#edit_form")[0];
+			    if (form.checkValidity() === false) {
+			        form.reportValidity(); // 브라우저 기본 경고 표시
+			    } else {
+			        $("#edit_date").prop('readonly', false);  // 폼 제출 전에 필드를 활성화
+			        $("#edit_form").submit(); // 폼 제출
+			    }
 			});
 
 			$("#edit_form").submit(function (event) {
